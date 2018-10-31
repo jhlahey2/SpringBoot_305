@@ -1,5 +1,7 @@
 package seb.com.movie;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ public class Actor {
     private String realname;
 
     @ManyToMany(mappedBy = "cast")
+    @JsonIgnore
      private Set<Movie> movies;
 
     public long getId() {

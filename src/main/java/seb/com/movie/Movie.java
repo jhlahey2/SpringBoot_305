@@ -13,7 +13,7 @@ public class Movie {
     private String description;
 
     @ManyToMany
-    private Set<Actor> cast;
+     private Set<Actor> cast;
 
     public long getId() {
         return id;

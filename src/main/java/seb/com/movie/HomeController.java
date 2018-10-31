@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Controller
+//@Controller
+@RestController
 public class HomeController {
     @Autowired
     ActorRepository actorRepository;
@@ -16,7 +18,8 @@ public class HomeController {
     MovieRepository movieRepository;
 
     @RequestMapping("/")
-    public String index(Model model){
+            public Iterable<Movie> movielist(){
+//    public String index(Model model){
         Actor actor=new Actor();
         actor.setName("Sandra Bullock");
         actor.setRealname("Sandra Mae Bullowski");
@@ -33,9 +36,12 @@ public class HomeController {
         actorRepository.save(actor);
         movie.setCast(actors);
         movieRepository.save(movie);
-        model.addAttribute("actors",actorRepository.findAll());
 
-        return "index";
+
+//        model.addAttribute("actors",actorRepository.findAll());
+
+        // return "index";
+        return movieRepository.findAll();
     }
 
     public void data(Set<Movie> movies,Set<Actor> actors){
